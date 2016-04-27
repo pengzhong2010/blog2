@@ -1,16 +1,20 @@
 package controllers
 
 import (
-	_ "blog2/models"
+	// "blog2/models"
 	"github.com/gin-gonic/gin"
+	// "log"
 	"net/http"
 )
 
 func Home(c *gin.Context) {
-
-	c.HTML(http.StatusOK, "home.html", gin.H{
-		"title": "Home",
-	})
+	// user := models.User{}
+	// user.List()
+	// log.Println(list)
+	// c.String(http.StatusOK, list)
+	// c.HTML(http.StatusOK, "home.html", gin.H{
+	// 	"title": "Home",
+	// })
 }
 
 func Category(c *gin.Context) {

@@ -3,11 +3,12 @@ package models
 import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"log"
 )
 
 type User struct {
 	gorm.Model
-	Email  string `gorm:"size:50"`
+	Email  string `gorm:"size:50;unique"`
 	Pwd    string
 	Topics []Topic
 	Entrys []Entry
@@ -33,8 +34,22 @@ type Entry struct {
 	Content string
 }
 
+var I *gorm.DB
+
 func init() {
-	db, _ := gorm.Open("mysql", "root:@/blog?charset=utf8&parseTime=True&loc=Local")
-	db.AutoMigrate(&User{}, &Category{}, &Topic{}, &Entry{})
+	var err error
+	I, err = gorm.Open("mysql", "root:@/blog?charset=utf8&parseTime=True&loc=Local")
+	if err != nil {
+		log.Fatalf("%v", err)
+	}
+	I.LogMode(true)
+	I.AutoMigrate(&User{}, &Category{}, &Topic{}, &Entry{})
 
 }
+
+// func (u *User) List() {
+// 	a := i.Find(&u)
+// 	log.Println(a)
+// 	i.First(&u)
+// 	log.Println(u)
+// }
