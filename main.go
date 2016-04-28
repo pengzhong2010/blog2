@@ -29,6 +29,24 @@ func main() {
 			v2.POST("/edit/:id", admin.UserEditDo)
 			v2.GET("/del/:id", admin.UserDel)
 		}
+		v3 := v1.Group("/category")
+		{
+			v3.GET("/list", admin.CategoryList)
+			v3.GET("/add", admin.CategoryAdd)
+			v3.POST("/add", admin.CategoryAddDo)
+			v3.GET("/edit/:id", admin.CategoryEdit)
+			v3.POST("/edit/:id", admin.CategoryEditDo)
+			v3.GET("/del/:id", admin.CategoryDel)
+		}
+		v4 := v1.Group("/topic")
+		{
+			v4.GET("/list", admin.TopicList)
+			v4.GET("/add", admin.TopicAdd)
+			v4.POST("/add", admin.TopicAddDo)
+			v4.GET("/edit/:id", admin.TopicEdit)
+			v4.POST("/edit/:id", admin.TopicEditDo)
+			v4.GET("/del/:id", admin.TopicDel)
+		}
 		v1.GET("/base", admin.Base)
 	}
 
